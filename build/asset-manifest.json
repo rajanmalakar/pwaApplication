@@ -1,14 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.fb961db8.css",
-    "main.js": "/static/js/main.bbc00955.js",
-    "service-worker.js": "/service-worker.js",
+    "main.css": "/static/css/main.ddda5678.css",
+    "main.js": "/static/js/main.1a14d129.js",
+    "static/media/slider.png": "/static/media/slider.cfbf8d3670cb6328b1f5.png",
+    "static/media/rewardBg.png": "/static/media/rewardBg.cc4e7c89f635e89b6afb.png",
+    "static/media/homeImg.png": "/static/media/homeImg.d2b9061e82dc2d93fde1.png",
+    "static/media/loyality_bg.png": "/static/media/loyality_bg.515a0e9d995e7b0e1ca5.png",
+    "static/media/loyaltyCard.png": "/static/media/loyaltyCard.1ee90d5c6409614c0d5c.png",
+    "static/media/coopons.png": "/static/media/coopons.2c616a95dfec040d19fc.png",
+    "static/media/addToHome.png": "/static/media/addToHome.60919315a2d0250695a3.png",
+    "static/media/googleReview.png": "/static/media/googleReview.2ca74d2dd4e5e3d37778.png",
+    "static/media/freecops3.png": "/static/media/freecops3.8cbeeef842699ee3b874.png",
+    "static/media/mandefalut.png": "/static/media/mandefalut.1d40e988f498b9d937f3.png",
+    "static/media/girldefault.png": "/static/media/girldefault.f6f76cacccea5543dd02.png",
+    "static/media/food30.png": "/static/media/food30.548b11af52ef043596db.png",
     "index.html": "/index.html",
-    "main.fb961db8.css.map": "/static/css/main.fb961db8.css.map",
-    "main.bbc00955.js.map": "/static/js/main.bbc00955.js.map"
+    "main.ddda5678.css.map": "/static/css/main.ddda5678.css.map",
+    "main.1a14d129.js.map": "/static/js/main.1a14d129.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb961db8.css",
-    "static/js/main.bbc00955.js"
+    "static/css/main.ddda5678.css",
+    "static/js/main.1a14d129.js"
   ]
 }

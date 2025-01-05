@@ -50,7 +50,7 @@ const SocialMediaAbout = () => {
 
       {/* Card with About Us Text */}
       <Card
-        style={{
+        style={{ zIndex: "100",
           backgroundColor: "#25026E",
           color: "white",
           marginTop: "30px",

@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import Logo from "../assets/icons/logo.png";
 import BackgroundImg from "../assets/images/slider.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import LogoutModal from "../components/LogoutModal";
 
 const SlidingPage = ({ showPage, setShowPage }) => {
   // Handle enabling/disabling background scroll
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     if (showPage) {
       document.body.style.overflow = "hidden";
@@ -22,6 +25,7 @@ const SlidingPage = ({ showPage, setShowPage }) => {
 
   const handleNavigation = (goTo) => {
     navigate(goTo); // Replace "/contact-us" with your actual route
+    setShowPage(false);
   };
 
   return (
@@ -41,7 +45,12 @@ const SlidingPage = ({ showPage, setShowPage }) => {
       >
         {/* Close Icon */}
 
-        <img src={Logo} alt="logo" style={{ margin: 10 }} />
+        <img
+          src={Logo}
+          alt="logo"
+          style={{ margin: 10 }}
+          onClick={() => handleNavigation("/")}
+        />
         <FaTimes
           onClick={() => setShowPage(false)}
           style={{
@@ -156,13 +165,24 @@ const SlidingPage = ({ showPage, setShowPage }) => {
             />
             <li
               style={{ marginBottom: "10px", margin: 20 }}
-              onClick={() => handleNavigation("/")}
+              onClick={() => {
+                if (location.pathname !== "/") {
+                  setIsLogoutModalOpen(true);
+                  setShowPage(false);
+                }
+                setShowPage(false);
+              }}
             >
               Logout
             </li>
           </ul>
         </div>
       </div>
+
+      <LogoutModal
+        isModalOpen={isLogoutModalOpen}
+        setIsModalOpen={setIsLogoutModalOpen}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import OnboardHeader from "../components/OnboardHeader";
 import CustomButton from "../components/custom/CustomButton";
-
+import Logo from "../assets/icons/logo1.png";
 function ContactFaq() {
   const [activeTab, setActiveTab] = useState("contact"); // default to 'contact'
 
@@ -19,6 +19,39 @@ function ContactFaq() {
     <>
       <OnboardHeader />
 
+      <div
+        style={{
+          backgroundColor: "#E0E0E0",
+          width: "100vw",
+          height: "3px",
+          padding: "0",
+          boxSizing: "border-box",
+          marginTop: "20px",
+        }}
+      />
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img src={Logo} alt="logo" />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginTop: "10px",
+          }}
+        >
+          <span style={{ color: "#000000", fontSize: 20 }}>TAGIS</span>
+          <span style={{ color: "#2D008C", fontSize: 16, fontWeight: "bold" }}>
+            Tap Connect Experience
+          </span>
+        </div>
+      </div>
       <div style={{ margin: 20 }}>
         <div style={{ marginBottom: "20px" }}>
           <button

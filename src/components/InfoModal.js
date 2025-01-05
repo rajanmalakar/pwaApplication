@@ -30,7 +30,7 @@ const InfotModal = ({ isModalOpen, setIsModalOpen }) => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "center", zIndex:'101'
           }}
         >
           <div

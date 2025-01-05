@@ -9,8 +9,10 @@ import { Button } from "react-bootstrap";
 
 import { FaInfoCircle } from "react-icons/fa";
 import SlidingPage from "./SlidingPage";
-function OnboardHeader() {
+import OnboaringInfo from "./OnboadingInfo";
+function OnboardHeader({ disabled, OLODISABLE }) {
   const [showPage, setShowPage] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <>
       <div style={style.headtop}>
@@ -23,64 +25,82 @@ function OnboardHeader() {
         <img src={Translator} alt="Translator" style={style.imgTrnstor} />
       </div>
       {/* second bottom */}
-      <div
-        style={{
-          backgroundColor: "#25026E",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <FaInfoCircle
-          size={18}
-          color="white"
-          style={{ position: "absolute", right: 0 }}
-          // onClick={() => setIsModalOpen(true)}
-        />
-        <div style={{ display: "flex" }}>
-          <img src={Profile} alt="OLO" style={style.oloimg} />
-          <div style={{ margin: 10 }}>
-            <span style={{ color: "white", display: "block" }}>Martin</span>
-            <span style={{ color: "white", display: "block" }}>James</span>
+      {disabled === true && (
+        <>
+          <div
+            style={{
+              backgroundColor: "#25026E",
+              display: "flex",
+              justifyContent: "space-between",
+              height: "80px",
+              alignItems: "center",
+            }}
+          >
+            <FaInfoCircle
+              size={18}
+              color="white"
+              style={{
+                position: "absolute",
+                right: 0,
+                // top: 0,
+                marginTop: -44,
+                marginRight: 15,
+              }}
+              onClick={() => setIsModalOpen(true)}
+            />
+            <div style={{ display: "flex" }}>
+              <img src={Profile} alt="OLO" style={style.oloimg} />
+              <div style={{ margin: 10 }}>
+                <span style={{ color: "white", display: "block" }}>Martin</span>
+                <span style={{ color: "white", display: "block" }}>James</span>
+              </div>
+            </div>
+            <Button style={style.btnCopn}>
+              <img
+                src={Group}
+                style={{ objectFit: "contain", marginRight: 5 }}
+                alt="Group"
+              />
+              <span
+                style={{
+                  borderLeft: "1px dashed black",
+                  paddingLeft: "5px",
+                }}
+              >
+                0
+              </span>
+            </Button>
+            <Button style={style.btnCopn}>
+              <span style={{}}>Coupons</span>
+              <span
+                style={{
+                  borderLeft: "1px dashed black",
+                  paddingLeft: "5px",
+                }}
+              >
+                0
+              </span>
+            </Button>
           </div>
-        </div>
-        <Button style={style.btnCopn}>
-          <img
-            src={Group}
-            style={{ objectFit: "contain", marginRight: 5 }}
-            alt="Group"
-          />
-          <span
-            style={{
-              borderLeft: "1px dashed black",
-              paddingLeft: "5px",
-            }}
-          >
-            0
-          </span>
-        </Button>
-        <Button style={style.btnCopn}>
-          <span style={{}}>Coupons</span>
-          <span
-            style={{
-              borderLeft: "1px dashed black",
-              paddingLeft: "5px",
-            }}
-          >
-            0
-          </span>
-        </Button>
-      </div>
-      {/* third bottom */}
-      <div style={style.headBottm}>
-        <img src={OLO} alt="OLO" style={style.oloimg} />
+          {/* third bottom */}
+          {OLODISABLE === true && (
+            <div style={style.headBottm}>
+              <img src={OLO} alt="OLO" style={style.oloimg} />
 
-        <div style={style.finlenTxt}>
-          <span className="restaurant-name">Olo</span>
-          <span className="location">Helsinki, Finland</span>
-        </div>
-        <Button variant="outline-secondary">Follow</Button>
-      </div>
+              <div style={style.finlenTxt}>
+                <span className="restaurant-name">Olo</span>
+                <span className="location">Helsinki, Finland</span>
+              </div>
+              <Button variant="outline-secondary">Follow</Button>
+            </div>
+          )}
+        </>
+      )}
       <SlidingPage showPage={showPage} setShowPage={setShowPage} />
+      <OnboaringInfo
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
     </>
   );
 }
@@ -111,6 +131,7 @@ const style = {
     height: 60,
     objectFit: "contain",
     justifyContent: "start",
+    marginLeft: 15,
   },
   finlenTxt: {
     display: "flex",
@@ -122,7 +143,7 @@ const style = {
     marginLeft: 20,
   },
   btnCopn: {
-    borderRadius: "15px",
+    borderRadius: "10px",
     backgroundColor: "white",
     color: "black",
     padding: "10px 20px",
@@ -131,6 +152,6 @@ const style = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 25,
   },
 };

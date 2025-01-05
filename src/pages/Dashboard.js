@@ -14,27 +14,52 @@ import Img3 from "../assets/icons/img3.png";
 import CustomButton from "../components/custom/CustomButton";
 
 import OpenBtn from "../assets/icons/openingBtn.png";
+import CopsActivation from "../components/CopsActivation";
+import BottomSheet from "../components/BottomSheet";
+import { useNavigate } from "react-router-dom";
+import Reward from "../components/Reward";
 
 const Dashboard = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const [freeCops, setFreeCops] = useState(false);
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [ageLimitaion, setAddlimitation] = useState(false);
+  const [coupanPopup, setCoupanPopup] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const navigate = useNavigate();
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const coupans = [
+    { name: "Coupon 1", img: Coops1 },
+    { name: "Coupon 2", img: Coops2 },
+    { name: "Coupon 3", img: Coops3 },
+    { name: "Coupon 4", img: Coops1 },
+    { name: "Coupon 5", img: Coops2 },
+    { name: "Coupon 6", img: Coops3 },
+    { name: "Coupon 7", img: Coops1 },
+  ];
+
   const shortText =
     "Palate-pleasing precision: Olo in a nutshell. A flag bearer for contemporary Scandi cooking, the hyper-creative menu is moulded around the childhood memories of chef ";
   const fullText =
     "Palate-pleasing precision: Olo in a nutshell. A flag bearer for contemporary Scandi cooking, the hyper-creative menu is moulded around the childhood memories of chef Palate-pleasing precision: Olo in a nutshell. A flag bearer for contemporary Scandi cooking, the hyper-creative menu is moulded around the childhood memories of chef ";
-  const [isOpen, setIsOpen] = useState(false);
 
   // Toggle function to show/hide opening hours
   const toggleOpenHours = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleBottmSheet = (val) => {
+    setIsSliderOpen(val);
+  };
   return (
     <>
-      <OnboardHeader />
+      <OnboardHeader disabled={true} OLODISABLE={true} />
       <div
         style={{
           backgroundColor: "#E0E0E0",
@@ -124,14 +149,44 @@ const Dashboard = () => {
           <img
             src={LoyaltyCard}
             alt="Coupon 1"
-            style={{ objectFit: "contain" }}
+            onClick={() => navigate("/loyality")}
+            style={{ objectFit: "contain", cursor: "pointer" }}
           />
-          <img src={Coops1} alt="Coupon 2" style={{ objectFit: "contain" }} />
+
+          <div
+            style={{ maxHeight: "545px" }}
+            className={showAll ? "custom-scrollbar" : ""}
+          >
+            {coupans
+              .slice(0, showAll ? coupans.length : 3)
+              .map((coupon, index) => (
+                <img
+                  key={index}
+                  src={coupon.img}
+                  alt={coupon.name}
+                  style={{ objectFit: "contain", cursor: "pointer" }}
+                  // onClick={() => { setFreeCops(true); setAddlimitation(false); }}
+                  onClick={() => {
+                    if (index === 2 || index === 5) {
+                      setFreeCops(true);
+                      setAddlimitation(true);
+                    } else {
+                      setFreeCops(true);
+                      setAddlimitation(false);
+                    }
+                  }}
+                />
+              ))}
+          </div>
+
+          {/* <img src={Coops1} alt="Coupon 2" style={{ objectFit: "contain" }}
+            onClick={() => { setFreeCops(true); setAddlimitation(false); }} />
           <img src={Coops2} alt="Coupon 3" style={{ objectFit: "contain" }} />
-          <img src={Coops3} alt="Coupon 4" style={{ objectFit: "contain" }} />
+          <img src={Coops3} alt="Coupon 4" style={{ objectFit: "contain" }} onClick={() => {
+              setFreeCops(true); setAddlimitation(true); }} /> */}
         </div>
         <button
-          onClick={() => alert("Show more clicked!")} // Implement your logic here
+          onClick={() => setShowAll(!showAll)} // Implement your logic here
           style={{
             marginTop: "20px",
             padding: "10px 20px",
@@ -142,8 +197,14 @@ const Dashboard = () => {
             cursor: "pointer",
           }}
         >
-          Show More
-          <FaChevronDown style={{ marginLeft: "10px" }} />
+          {" "}
+          {showAll ? "See Less" : "See More"}
+          <FaChevronDown
+            style={{
+              marginLeft: "10px",
+              rotate: `${showAll ? "180deg" : "0deg"}`,
+            }}
+          />
         </button>
       </div>
 
@@ -175,7 +236,116 @@ const Dashboard = () => {
         />
       </div>
 
-      <CustomButton text="Leave a Review" onClick={{}} />
+      <CustomButton text="Leave a Review" onClick={() => {}} />
+      <CopsActivation
+        isModalOpen={freeCops}
+        setIsModalOpen={setFreeCops}
+        callBack={handleBottmSheet}
+        ageLimitaion={ageLimitaion}
+        setAddlimitation={setAddlimitation}
+      />
+      <BottomSheet isOpen={isSliderOpen} onClose={() => {}}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <h2
+            style={{
+              textAlign: "center",
+              marginBottom: "20px",
+              color: "#000000",
+              paddingTop: "20px",
+            }}
+          >
+            Coupon Confirmation
+          </h2>
+          <div
+            style={{
+              backgroundColor: "#E0E0E0",
+              width: "80%",
+              height: "3px",
+              padding: "0",
+              boxSizing: "border-box",
+              marginBottom: "20px",
+            }}
+          />
+          <p style={{ textAlign: "center", marginBottom: "30px" }}>
+            I confirm that I want to activate the coupon.
+          </p>
+          <div
+            style={{
+              display: "flex",
+              gap: "10px",
+              justifyContent: "center",
+              marginTop: "20px",
+            }}
+          >
+            <button
+              style={{
+                padding: "8px 12px",
+                backgroundColor: "#FFFFFF",
+                color: "Black",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Added shadow here
+                transition: "box-shadow 0.3s ease", // Smooth transition for hover effect
+              }}
+              onClick={() => {
+                setIsSliderOpen(false);
+                setFreeCops(false);
+              }}
+            >
+              RETURN
+            </button>
+            <button
+              style={{
+                padding: "8px 12px",
+                backgroundColor: "#2A0181",
+                color: "white",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
+                fontWeight: "bold",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", // Added shadow here
+                transition: "box-shadow 0.3s ease",
+                marginLeft: 20,
+              }}
+              onClick={() => {
+                setIsSliderOpen(false);
+                setFreeCops(false);
+                setCoupanPopup(true);
+              }}
+            >
+              ACTIVATE
+            </button>
+          </div>
+          <p
+            style={{
+              margin: 10,
+              color: "#000000",
+              fontSize: 16,
+              fontWeight: "500",
+              textAlign: "center",
+            }}
+          >
+            Note: The coupon is valid for 15 minutes after activation.
+          </p>
+        </div>
+      </BottomSheet>
+      {coupanPopup && (
+        <Reward
+          showPopup={coupanPopup}
+          onClose={() => setCoupanPopup(false)}
+          countText={"Here is your FREE COFFEE Coupon from olo"}
+        />
+      )}
     </>
   );
 };

@@ -14,7 +14,7 @@ const Header = () => {
         <div className="header-left">
           <img
             src={ImgBurger}
-            alt=""
+            alt="ImgBurger"
             style={{
               width: "50%",
               height: "50%",

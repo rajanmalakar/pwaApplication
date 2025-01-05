@@ -58,10 +58,10 @@ const LoginPage = () => {
 
       {/* for login input implementation */}
       <div style={{}}>
-        <CustomInput value={name} onchange={setNameHandle} label={"Name"} />
-        <div style={{ marginTop: "20px" }}>
+        <CustomInput value={name || ""} onchange={setNameHandle} label={"Name"} style={{width:'80%'}}/>
+        <div style={{ marginTop: "20px", width:'80%', margin:'20px auto' }}>
           <CustomInput
-            value={phNumber}
+            value={phNumber || ""}
             onchange={setPhHndle}
             label={"Phone Number"}
           />
